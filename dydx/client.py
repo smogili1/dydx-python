@@ -283,6 +283,23 @@ class Client(object):
             startingBefore=startingBefore
         )
 
+    def get_funding_history(
+        self,
+        address
+    ):
+        '''
+        Return balances for an address and account number
+        :param address: required
+        :type address: str (address)
+        :param number: optional, defaults to 0
+        :type number: number
+        :returns: list of balances
+        :raises: DydxAPIError
+        '''
+        return self._get('operations', params=utils.remove_nones({
+            'walletAddress': address
+        }))
+    
     def get_orders(
         self,
         pairs,
